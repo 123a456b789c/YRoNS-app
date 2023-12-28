@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="register.js"></script>
+    <title>Register new user</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style> 
+</head>
+<body onload="loadConfig();">
+
+    <div id="register-form" style="margin-left: 25px; margin-right: 25px; margin-top: 25px;">
+        <div id="output"></div>
+        <div style="padding-bottom: 10px;">
+            <label for="passkey">8-digit passcode from paper token</label>
+            <input type="text" id="passkey" placeholder="fh23x6e5">
+        </div>
+          <div style="padding-bottom: 10px;">
+            <label for="name">Your name (display name)</label>
+            <input type="text" id="name" placeholder="John Doe">
+          </div>
+          <div style="padding-bottom: 10px;">
+            <label for="school">Your school</label>
+            <select id="school">
+              </select>
+        </div>
+          <div  style="padding-bottom: 10px;">
+            <label for="country">Your country</label>
+            <select id="country" disabled>
+            </select>
+            </div>
+            <div style="padding-bottom: 10px;">
+                <label for="email">Your email address</label>
+                <input type="email" id="email" placeholder="webmaster@yrons.org">
+            </div>
+            <div style="padding-bottom: 10px;">
+                <label for="bio">Your bio / contact information (supports rich content, links are automatically clickable) </label>
+            <textarea id="bio" rows="3"></textarea>
+            </div>
+            <div style="padding-bottom: 10px;">
+                <label for="project">Your project's title</label>
+                <input type="text"id="project" placeholder="Touching grass">
+            </div>
+            <button  style="margin-top: 10px;" onclick="send()">Register</button>
+
+</body>
+</html>

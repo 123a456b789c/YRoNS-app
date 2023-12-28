@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="qna_sender.js"></script>
+    <title>Send in a question</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style></head>
+<body onload="loadConfig();">
+    <div id="updater-form" style="margin-left: 25px; margin-right: 25px; margin-top: 25px;">
+        <div id="output"></div>
+            <div style="padding-bottom: 10px;">
+                <label for="message">Your message</label>
+                <textarea id="message" rows="3"></textarea>
+            </div>
+            <p style="color: red; text-decoration: underline;">All messages will be stored due to security reasons! All messages include the home country of the sender and the name or a UUID (Universally Unique Identifier) of the account.</p>
+            <button class="btn btn-primary" id="sender" style="margin-top: 0px;" onclick="sendMessage()">Send message</button>
+
+</body>
+</html>

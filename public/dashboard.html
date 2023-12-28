@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="flagger.js" defer></script>
+    <script src="dashboard.js" defer></script>
+    <script src="modal.js" defer></script>
+    <script src="settings.js" defer></script>
+    <script src="telegram-message.js" defer></script>
+    <title>Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h5 {
+          --typography-spacing-vertical: 1rem;
+        }
+
+        :root {
+          --typography-spacing-vertical: 1rem !important;
+        }
+    </style> 
+</head>
+<body style="display: none;" onload="loadConfig();">
+    <div style="margin-left: 25px; margin-right: 25px; margin-top: 25px;">
+                <p style="position:fixed; bottom: 1px; right: 10px;" >Lé/vm1</p>
+
+        <article style="margin-top: 10px; width: 100%;">
+            <header style="margin-bottom:  10px;"><h1 style="margin-bottom: 10px;" id="name">Welcome, Lorem Ipsum!</h1><i id="meta"></i></header>
+            <a onclick="logout()" href="#" role="button">Log out</a>
+            <a onclick="location.href = 'https://app.yrons.org/administrative.html'" href="#" id="staffbutton" role="button" disabled>Open Admin panel</a>
+            </article>
+
+        <article>
+          <header style="margin-bottom:  10px;"><h1>Contact sharing</h1></header>
+          <p style="margin-bottom: 0px;">Your 8 digit contact sharing code: <strong id="sharing_code"></strong></p>
+          <p style="margin-bottom: 10px;">Share this code with your fellow delegates, and exchange contact information easily. Or scan the QR-code. <a data-target="qr" onclick="toggleModal(event); " style="text-decoration: underline;" id="QRButton">Show QR-code</a></p>
+          <a data-target="editProfile" role="button" href="#" onClick="toggleModal(event); hydrate_settings()">Edit profile data</a>
+        </article>
+
+        <article>
+          <header style="margin-bottom: 10px;"><h1 style="margin-bottom: 0px;">Enter a code</h1></header>
+          <div>
+              <div class="card" style="width: 100%;margin-bottom: 10px;">
+                  <div>
+                    <h5>Enter a contact sharing code below!</h5>
+                    <input type="text" id="code" placeholder="Enter code here">
+                  <button type="button" style="margin-top: 10px;" onclick="location.href = window.config.address_of_static + 'qrscanned.html?' + document.getElementById('code').value ">Jump</button>
+                  </div>
+                </div>    
+          </div>
+          </article>
+
+          <article style="width: 100%;margin-bottom: 10px;">
+            <header style="margin-bottom:  10px;"><h1 style="margin-bottom: 0px;">Upcoming events</h1></header>
+              <div>
+                <h5>There are no upcoming events.</h5>
+                <p style="margin-bottom: 10px;">No upcoming events for today, try refreshing the page.</p>
+              </div>
+          </article>
+
+        <article style="margin-bottom: 10px; width: 100%;">
+          <header style="margin-bottom:  10px;"><h1 style="margin-bottom: 0px;">Presentations</h1></header>
+          <p style="margin-bottom: 10px;">You can use this app to ask questions during the QnA part of the presentations.</p>
+          <a href="/qna_sender.html" role="button" >Launch app</a>
+        </article>
+
+        <article style="margin-bottom: 10px; width: 100%;">
+          <header style="margin-bottom:  10px;"><h1 style="margin-bottom: 0px;">Interactive map of Budapest</h1></header>
+          <p style="margin-bottom: 10px;">You can use this app to navigate the city centre and read about the most important sights of our city.</p>
+          <a href="/map.html" role="button">Lauch app</a>
+        </article>
+
+
+
+
+
+            <article>
+              <header style="margin-bottom: 10px;"><h1 style="margin-bottom: 0px;">Messages</h1></header>
+              <a style="margin-bottom: 10px;" data-target="sendMessageModal" onClick="document.getElementById('message_output').innerHTML = '';toggleModal(event)" role="button" href="#">New message</a>
+              <details>
+                <summary style="margin-top: 10px;" role="button" class="contrast">Your messages</summary>
+                <div style="margin-top: 10px;" id="messageContainer"></div>
+              </details>
+
+            </article>
+
+
+        
+
+
+        <dialog id="sendMessageModal">
+         <article>
+           <a href="#close" aria-label="Close" class="close" data-target="sendMessageModal" onClick="toggleModal(event)"></a>
+           <h3>Send a message to the organizers</h3>
+            <div id="message_output"></div>
+                <div style="padding-bottom: 10px;">
+                    <label for="message_title">Message title</label>
+                    <input type="text" id="message_title" placeholder="Question regarding the presentations">
+                </div>
+                <div style="padding-bottom: 10px;">
+                    <label for="message_prior">Select priority</label>
+                    <select id="message_prior">
+                        <option value="Normal">Normal (question, message to the organizers)</option>
+                        <option value="Priority">Priority (question, wish)</option>
+                        <option value="Urgent">Urgent (possible emergency, high priority)</option>
+                      </select>
+                </div>
+                <div style="padding-bottom: 10px;">
+                    <label for="message_message">Your message</label>
+                    <textarea id="message_message" rows="3"></textarea>
+                </div>
+           <footer>
+             <a href="#cancel" role="button" class="secondary" data-target="sendMessageModal" onClick="toggleModal(event)">Cancel</a>
+             <a href="#confirm" role="button" data-target="sendMessageModal" onClick="message_send('sendMessageModal')">Confirm</a>
+           </footer>
+         </article>
+        </dialog>
+        <dialog id="editProfile">
+          <article style="width: 80%;">
+            <a href="#close" aria-label="Close" class="close" data-target="editProfile" onClick="toggleModal(event)"></a>
+            <h3>Edit profile data</h3>
+            <div id="updater-form">
+              <div id="settings_output"></div>
+                <div style="padding-bottom: 10px;">
+                  <label for="settings_name">Your name (display name)</label>
+                  <input type="text"id="settings_name" placeholder="John Doe">
+                </div>
+                <div style="padding-bottom: 10px;">
+                  <label for="settings_email">Your email address</label>
+                  <input type="email" id="settings_email" placeholder="webmaster@yrons.org" disabled>
+              </div>
+              <div style="padding-bottom: 10px;">
+                  <label for="settings_bio">Your bio / contact information</label>
+              <textarea id="settings_bio" rows="3"></textarea>
+              </div>
+              <div style="padding-bottom: 10px;">
+                  <label for="settings_project">Your project's title</label>
+                  <input type="text" id="settings_project" placeholder="Touching grass">
+              </div>
+            <footer>
+              <a href="#cancel" role="button" class="secondary" data-target="editProfile" onClick="toggleModal(event)">Cancel</a>
+              <a href="#confirm" role="button" data-target="editProfile" onClick="send('editProfile');">Submit</a>
+            </footer>
+          </article>
+        </dialog>
+        
+        <dialog data-theme="light" id="qr">
+          <article style="width: 80%;">
+            <a href="#close" aria-label="Close" class="close" data-target="qr" onClick="toggleModal(event)"></a>
+            <h3>Contact sharing code</h3>
+            <div  style="margin-top: 10px;" id="qrcode"></div>
+            <footer>
+              <a href="#cancel" role="button" class="secondary" data-target="qr" onClick="toggleModal(event)">Close</a>
+            </footer>
+          </article>
+        </dialog>
+        
+
+    </div>
+</body>
+</html>

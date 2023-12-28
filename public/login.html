@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="login.js"></script>
+    <title>Log in</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+	:
+    </style> 
+</head>
+<body onload="loadConfig();">
+    <div style="margin-left: 25px; margin-right: 25px; margin-top: 25px;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <div style="padding-bottom: 10px; width: 100%; min-width: 200px; max-width: 400px;">
+            <label for="email">Your registered e-mail address</label>
+            <input type="email" autocomplete="email"  id="email" placeholder="webmaster@yrons.org">
+        </div>
+        <div style="padding-bottom: 5px; width: 100%; min-width: 200px; max-width: 400px;">
+            <label for="passkey">8-digit passcode from paper token</label>
+            <input type="password" autocomplete="current-password" id="passkey">
+        </div>
+    <button style="margin-top: 10px; width: 100%; min-width: 200px; max-width: 400px;" onclick="send()" id="loginbutton">Login</button>
+    <button onclick="location.href = 'register.html'" style="width: 100%; min-width: 200px; max-width: 400px;" >Or register</button>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="flagger.js"></script>
+    <script src="remote.js"></script>
+    <title>Remote</title>
+</head>
+<body onload="loadConfig()">
+    <div onclick="initRemote()" id="output"></div>
+    <div style="width:100%;text-align: center;">
+        <button class="contrast" style="display: inline-block;width: 30%;" onclick="sendRemote('flash');"><i class="fa-3x fa-solid fa-triangle-exclamation" style="color: #e40101;"></i></button>
+        <button class="contrast" style="display: inline-block;width: 30%;" onclick="sendRemote('clear');"><i class="fa-3x fa-regular fa-trash-can" style="color: #e40101;"></i></button>
+        <button class="contrast" style="display: inline-block;width: 30%;" onclick="sendRemote('reload');"><i class="fa-3x fa-solid fa-arrows-rotate" style="color: #e40101;"></i></button>
+    
+    <table>
+        <thead>
+          <tr>
+            <th scope="col"># (id)</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Message</th>
+            <th scope="col">Clear local</th>
+            <th scope="col">Clear remote</th>
+          </tr>
+        </thead>
+        <tbody id="messages">
+        </tbody>
+      </table>
+
+
+</body>
+</html>

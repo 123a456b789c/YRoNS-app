@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src="codes.js"></script>
+    <title>Code Status</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style> 
+</head>
+<body onload="loadConfig();">
+    <div style="margin-top: 25px; margin-left: 25px; margin-right: 25px;">
+    <button style="width: 300px;" onclick="resetCodes()">Reset codes</button>
+    <div id="output"></div>
+    <table>
+        <thead>
+          <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Status</th>
+            <th scope="col">Created at</th>
+          </tr>
+        </thead>
+        <tbody id="codelist">
+          <tr>
+            <td colspan="3">Codes not loaded.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>    
+    </div>
+</body>
+</html>

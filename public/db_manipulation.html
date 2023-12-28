@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="db_manipulation.js"></script>
+    <title>Db manipulation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style> 
+</head>
+<body onload="loadConfig();">
+    <nav class="navbar navbar-dark bg-dark justify-content-left">
+        <a class="navbar-brand" style="padding-left: 10px;">Manipulate db (map and events) (INTERNAL)</a>
+    </nav>
+    <div style="margin-top: 25px; margin-left: 25px; margin-right: 25px;">
+    <div id="output"></div>
+    <button class="btn btn-warning" onclick="sendMap()">Add map_place</button>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Lat</th>
+            <th scope="col">Long</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="map_places">
+          <tr>
+            <td colspan="5">Map_places not loaded.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top: 25px; margin-left: 25px; margin-right: 25px;">
+        <button class="btn btn-warning" style="margin-right: 10px;" onclick="sendEvent()">Add events</button>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Starts at</th>
+                <th scope="col">Ends at</th>
+                <th scope="col">Location</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="events">
+              <tr>
+                <td colspan="6">Events not loaded.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
+    </div>
+</body>
+</html>
